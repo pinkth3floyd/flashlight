@@ -3,6 +3,7 @@ package com.example.flashtorch;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
@@ -73,6 +74,7 @@ public class FirstFragment extends Fragment {
                         cameraManager.setTorchMode(cameraId, !isFlashlightOn);
                         isFlashlightOn = !isFlashlightOn;
                         flashTorchButton.setText(isFlashlightOn ? "Turn Off Flashlight" : "Turn On Flashlight");
+                        flashTorchButton.setBackgroundColor(isFlashlightOn ? Color.parseColor("#FF424242") : Color.parseColor("#FFFFAA42"));
                     } else {
                         Toast.makeText(context, "Flashlight requires Android M (API 23) or higher", Toast.LENGTH_SHORT).show();
                     }
