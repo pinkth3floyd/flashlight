@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -26,6 +27,7 @@ public class FirstFragment extends Fragment {
     private boolean isFlashlightOn = false;
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 100;
     private Button flashTorchButton;
+    private ImageView emissions;
     private FragmentFirstBinding binding;
 
     @Override
@@ -40,7 +42,8 @@ public class FirstFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        flashTorchButton = binding.flashButton; // Use view binding
+        flashTorchButton = binding.flashButton;
+        emissions=binding.emmissions;// Use view binding
 
         // Check for permission before accessing the camera
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -73,8 +76,9 @@ public class FirstFragment extends Fragment {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         cameraManager.setTorchMode(cameraId, !isFlashlightOn);
                         isFlashlightOn = !isFlashlightOn;
-                        flashTorchButton.setText(isFlashlightOn ? "Turn Off Flashlight" : "Turn On Flashlight");
-                        flashTorchButton.setBackgroundColor(isFlashlightOn ? Color.parseColor("#FF424242") : Color.parseColor("#FFFFAA42"));
+//                        flashTorchButton.setText(isFlashlightOn ? "Turn Off Flashlight" : "Turn On Flashlight");
+                        emissions.setVisibility( isFlashlightOn ? View.VISIBLE :View.INVISIBLE);
+                        flashTorchButton.setBackgroundColor(isFlashlightOn ? Color.parseColor("#FF424242") : Color.parseColor("#AAAAAA"));
                     } else {
                         Toast.makeText(context, "Flashlight requires Android M (API 23) or higher", Toast.LENGTH_SHORT).show();
                     }
