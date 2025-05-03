@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,6 +31,8 @@ public class FirstFragment extends Fragment {
     private Button flashTorchButton;
     private ImageView emissions;
     private FragmentFirstBinding binding;
+    private SoundPool sounds;
+    private int sExplosion;
 
     @Override
     public View onCreateView(
@@ -44,6 +48,8 @@ public class FirstFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         flashTorchButton = binding.flashButton;
         emissions=binding.emmissions;// Use view binding
+        sounds = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
+        sExplosion = sounds.load(getContext(), R.raw.sound, 1);
 
         // Check for permission before accessing the camera
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -72,13 +78,16 @@ public class FirstFragment extends Fragment {
         flashTorchButton.setOnClickListener(new View.OnClickListener() { // Corrected setOnClickListener
             @Override
             public void onClick(View v) {
+                sounds.play(sExplosion, 1.0f, 1.0f, 0, 0, 1.5f);
                 try {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         cameraManager.setTorchMode(cameraId, !isFlashlightOn);
                         isFlashlightOn = !isFlashlightOn;
 //                        flashTorchButton.setText(isFlashlightOn ? "Turn Off Flashlight" : "Turn On Flashlight");
                         emissions.setVisibility( isFlashlightOn ? View.VISIBLE :View.INVISIBLE);
-                        flashTorchButton.setBackgroundColor(isFlashlightOn ? Color.parseColor("#FF424242") : Color.parseColor("#AAAAAA"));
+//                        flashTorchButton.setBackgroundColor(isFlashlightOn ? Color.parseColor("#FF424242") : Color.parseColor("#FFFFFF"));
+
+                        flashTorchButton.setBackgroundColor(isFlashlightOn ? getResources().getColor(R.color.secondary): getResources().getColor(R.color.primary) );
                     } else {
                         Toast.makeText(context, "Flashlight requires Android M (API 23) or higher", Toast.LENGTH_SHORT).show();
                     }

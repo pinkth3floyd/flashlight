@@ -27,7 +27,7 @@
             android:layout_marginStart="200dp"
 
             android:layout_height="80dp"
-            android:background="@color/cardview_dark_background"
+
             android:layout_marginTop="210dp"
 
             />
