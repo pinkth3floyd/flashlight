@@ -1,4 +1,4 @@
-package com.example.flashtorch;
+package com.devpj.flashtorch;
 
 import org.junit.Test;
 

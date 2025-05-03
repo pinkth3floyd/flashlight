@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.flashtorch"
+    namespace = "com.devpj.flashtorch"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.flashtorch"
+        applicationId = "com.devpj.flashtorch"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

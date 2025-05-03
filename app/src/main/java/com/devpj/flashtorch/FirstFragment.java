@@ -1,4 +1,4 @@
-package com.example.flashtorch;
+package com.devpj.flashtorch;
 
 import android.Manifest;
 import android.content.Context;
@@ -20,7 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import com.example.flashtorch.databinding.FragmentFirstBinding;
+import com.devpj.flashtorch.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
 
